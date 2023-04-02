@@ -1,0 +1,5 @@
+1.pip install django
+2.django-admin startproject demo
+3.python manage.py startapp user
+4.python manage.py makemigrations
+5.python manage.py migrate
