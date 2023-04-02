@@ -23,14 +23,11 @@ def user(request):
 @csrf_exempt
 def user_data(request):
     if request.method == "GET":
-        e = UserDetails.objects.all().select_related('user')
-        email = []
-        name = []
-        a = {
-            "email": email,
-            "name": name
-        }
-        for i in e:
-            email.append(i.user.email)
-            name.append(i.name)
-        return JsonResponse(a)
+        user_detail = UserDetails.objects.all().select_related('user')
+        result = []
+        for u in user_detail:
+            email = u.user.email
+            name = u.name
+            a = {"email": email, "name": name}
+            result.append(a)
+        return JsonResponse(result, safe=False)
